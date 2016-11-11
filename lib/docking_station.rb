@@ -10,13 +10,16 @@ class DockingStation
 
   def release_bike
     raise "There are no more bikes!" if empty?
+    raise "That bike is broken!" if @docked_bikes[0].broken? == true
     @docked_bikes.shift
   end
+
 
 
   def dock(new_bike)
       raise "Docking station is full" if full?
       @docked_bikes << new_bike
+
   end
 
   def any_bikes_docked?
@@ -32,5 +35,4 @@ class DockingStation
     def empty?
       @docked_bikes.empty?
     end
-
 end

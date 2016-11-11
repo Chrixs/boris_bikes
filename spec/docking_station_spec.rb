@@ -49,5 +49,12 @@ describe DockingStation do
     expect(bike).to be_broken
   end
 
+    it 'wont allow broken bikes to be released' do
+      bike = Bike.new
+      bike.report_bike
+      station = DockingStation.new
+      station.dock(bike)
+      expect{station.release_bike}.to raise_error("That bike is broken!")
 
-end
+    end
+      end
