@@ -2,13 +2,14 @@ require 'docking_station'
 
 describe DockingStation do
 
+  context "test working by" do
   it {is_expected.to respond_to(:release_bike)}
 
   it 'expects bike to be working' do
   	bike = Bike.new
   	expect(bike.working?).to eq true
   end
-
+  end
   it {is_expected.to respond_to(:dock).with(1).argument}
 
   it "expects bike to be docked" do
@@ -39,6 +40,9 @@ describe DockingStation do
       expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 
-
+  it "expects the capacity to be set by the argument given" do
+    station = DockingStation.new(10)
+    expect(station.capacity).to eq 10
+  end
 
 end
