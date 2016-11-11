@@ -4,8 +4,10 @@ describe DockingStation do
 
   it {is_expected.to respond_to(:release_bike)}
 
+  let(:bike) { double :bike }
   it 'expects bike to be working' do
-  	bike = Bike.new
+    allow(bike).to receive(:working?).and_return(true)
+  	new_bike = bike
   	expect(bike.working?).to eq true
   end
   it {is_expected.to respond_to(:dock).with(1).argument}
@@ -43,7 +45,6 @@ describe DockingStation do
     expect(station.capacity).to eq 10
   end
 
-  let(:bike) { double :bike }
   it 'reports bike as broken bike' do
     allow(bike).to receive(:report_bike).and_return(true)
     allow(bike).to receive(:broken?).and_return(true)
@@ -53,7 +54,9 @@ describe DockingStation do
   end
 
   it 'wont allow broken bikes to be released' do
-    bike = Bike.new
+    allow(bike).to receive(:report_bike).and_return(true)
+    allow(bike).to receive(:broken?).and_return(true)
+    new_bike = bike
     bike.report_bike
     station = DockingStation.new
     station.dock(bike)
