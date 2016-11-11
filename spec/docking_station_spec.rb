@@ -57,4 +57,4 @@ describe DockingStation do
       expect{station.release_bike}.to raise_error("That bike is broken!")
 
     end
-      end
+end
