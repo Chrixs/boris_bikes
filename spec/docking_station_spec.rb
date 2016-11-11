@@ -46,8 +46,7 @@ describe DockingStation do
   end
 
   it 'sets default capacity when no parameters passed to docking station' do
-    station = DockingStation.new
-    expect(station.capacity).to eq 20
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 end
 
